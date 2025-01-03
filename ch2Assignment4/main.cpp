@@ -1,4 +1,5 @@
 #include "BookManager.h"
+#include "BorrowManager.h"
 #include "Book.h"
 int main(void)
 {
@@ -8,10 +9,20 @@ int main(void)
 	Book book3(std::make_pair(("한강"), ("소년이 온다")));
 	Book book4(std::make_pair(("헤르만 헤세"), ("데미안")));
 
+
+	// 북매니저에 등록
 	BookManager::GetInstance()->addBook(book1);
 	BookManager::GetInstance()->addBook(book2);
 	BookManager::GetInstance()->addBook(book3);
 	BookManager::GetInstance()->addBook(book4);
+
+	// 바로우매니저에 정보 기입 map에서 관리 3개초기값
+	BorrowManager::GetInstance()->initializeStock(book1);
+	BorrowManager::GetInstance()->initializeStock(book2);
+	BorrowManager::GetInstance()->initializeStock(book3);
+	BorrowManager::GetInstance()->initializeStock(book4);
+
+
 
 	//모든 책 보여주기
 	BookManager::GetInstance()->displayAllBooks();
@@ -28,5 +39,21 @@ int main(void)
 
 	//없는 작가의 책 찾기
 	BookManager::GetInstance()->searchByAuthor("윤성우");
+
+
+	//책 빌리기
+	BorrowManager::GetInstance()->borrowBook("c++프로그래밍");
+
+
+	BorrowManager::GetInstance()->borrowBook("개미");
+	BorrowManager::GetInstance()->borrowBook("개미");
+	BorrowManager::GetInstance()->borrowBook("개미");
+	BorrowManager::GetInstance()->borrowBook("개미");
+	BorrowManager::GetInstance()->displayStock();
+
+
+	BorrowManager::GetInstance()->returnBook("개미");
+	BorrowManager::GetInstance()->displayStock();
+
 	return 0;
 }

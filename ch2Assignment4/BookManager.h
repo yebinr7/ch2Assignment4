@@ -33,6 +33,11 @@ public:
 	 //작가로 찾아내기: 있으면 있다, 제목, 작가 출력, 같은작가면 작까꺼 모두출력 
 	 void searchByAuthor(std::string author);
 
+	 inline std::vector<Book>& getBmVector()
+	 {
+		 return _books;//원본 리턴
+	 }
+
 private:
 	std::vector<Book> _books;
 };
